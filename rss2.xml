@@ -9,8 +9,32 @@
     <atom:link href="http://example.com/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>逆风飞翔，展开翅膀</description>
-    <pubDate>Thu, 14 Sep 2023 01:40:48 GMT</pubDate>
+    <pubDate>Thu, 14 Sep 2023 02:00:57 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>frp 点对点透转</title>
+      <link>http://example.com/2023/09/14/frp-%E7%82%B9%E5%AF%B9%E7%82%B9%E9%80%8F%E8%BD%AC/</link>
+      <guid>http://example.com/2023/09/14/frp-%E7%82%B9%E5%AF%B9%E7%82%B9%E9%80%8F%E8%BD%AC/</guid>
+      <pubDate>Thu, 14 Sep 2023 02:00:15 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h1 id=&quot;点对点内网穿透&quot;&gt;&lt;a href=&quot;#点对点内网穿透&quot; class=&quot;headerlink&quot; title=&quot;点对点内网穿透&quot;&gt;&lt;/a&gt;点对点内网穿透&lt;/h1&gt;&lt;p&gt;这个示例将会演示一种不通过服务器中转流量的方式来访问内网服务。&lt;br&gt;frp提供了一种新的代理类型x</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h1 id="点对点内网穿透"><a href="#点对点内网穿透" class="headerlink" title="点对点内网穿透"></a>点对点内网穿透</h1><p>这个示例将会演示一种不通过服务器中转流量的方式来访问内网服务。<br>frp提供了一种新的代理类型xtcp用于应对在希望传输大量数据且流量不经过服务器的场景。<br>使用方式同stcp类似，需要在两边都部署上frpc用于建立直接的连接。<br>目前处于开发的初级阶段，并不能穿透所有类型的NAT设备，所以穿透成功率较低。穿透失败时可以尝试stcp的方式。     </p><p>frps.ini内容如下，需要额外配置监听一个UDP端口用于支持该类型的客户端：       </p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">bind_port = 7000</span><br><span class="line">bind_udp_port = 7000</span><br></pre></td></tr></table></figure><p>在需要暴露到内网的机器上部署frpc，且配置如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr = x.x.x.x</span><br><span class="line">server_port = 7000</span><br><span class="line">[p2p_ssh]</span><br><span class="line"><span class="built_in">type</span> = xtcp</span><br><span class="line"><span class="comment"># 只有 sk 一致的用户才能访问到此服务</span></span><br><span class="line">sk = abcdefg</span><br><span class="line">local_ip = 127.0.0.1</span><br><span class="line">local_port = 22</span><br></pre></td></tr></table></figure><p>在想要访问内网服务的机器上也部署frpc，且配置如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr = x.x.x.x</span><br><span class="line">server_port = 7000</span><br><span class="line">[p2p_ssh_visitor]</span><br><span class="line"><span class="built_in">type</span> = xtcp</span><br><span class="line"><span class="comment"># xtcp 的访问者</span></span><br><span class="line">role = visitor</span><br><span class="line"><span class="comment"># 要访问的 xtcp 代理的名字</span></span><br><span class="line">server_name = p2p_ssh</span><br><span class="line">sk = abcdefg</span><br><span class="line"><span class="comment"># 绑定本地端口用于访问 ssh 服务</span></span><br><span class="line">bind_addr = 127.0.0.1</span><br><span class="line">bind_port = 6000</span><br></pre></td></tr></table></figure><p>通过SSH访问内网机器，假设用户名为 test：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -oPort=6000 <span class="built_in">test</span>@127.0.0.1</span><br></pre></td></tr></table></figure>]]></content:encoded>
+      
+      
+      
+      <category domain="http://example.com/tags/frp-%E7%82%B9%E5%AF%B9%E7%82%B9%E7%A9%BF%E9%80%8F/">frp 点对点穿透</category>
+      
+      
+      <comments>http://example.com/2023/09/14/frp-%E7%82%B9%E5%AF%B9%E7%82%B9%E9%80%8F%E8%BD%AC/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>frp安全暴露内网服务</title>
