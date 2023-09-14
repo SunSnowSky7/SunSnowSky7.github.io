@@ -9,8 +9,32 @@
     <atom:link href="http://example.com/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>逆风飞翔，展开翅膀</description>
-    <pubDate>Tue, 12 Sep 2023 06:16:37 GMT</pubDate>
+    <pubDate>Thu, 14 Sep 2023 01:40:48 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>frp安全暴露内网服务</title>
+      <link>http://example.com/2023/09/14/frp%E5%AE%89%E5%85%A8%E6%9A%B4%E9%9C%B2%E5%86%85%E7%BD%91%E6%9C%8D%E5%8A%A1/</link>
+      <guid>http://example.com/2023/09/14/frp%E5%AE%89%E5%85%A8%E6%9A%B4%E9%9C%B2%E5%86%85%E7%BD%91%E6%9C%8D%E5%8A%A1/</guid>
+      <pubDate>Thu, 14 Sep 2023 01:39:54 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h1 id=&quot;安全地暴露内网服务&quot;&gt;&lt;a href=&quot;#安全地暴露内网服务&quot; class=&quot;headerlink&quot; title=&quot;安全地暴露内网服务&quot;&gt;&lt;/a&gt;安全地暴露内网服务&lt;/h1&gt;&lt;p&gt;更新于：2021-07-01 23:58:32&lt;br&gt;这个示例将会创建一个只有自己能</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h1 id="安全地暴露内网服务"><a href="#安全地暴露内网服务" class="headerlink" title="安全地暴露内网服务"></a>安全地暴露内网服务</h1><p>更新于：2021-07-01 23:58:32<br>这个示例将会创建一个只有自己能访问到的 SSH 服务代理。<br>对于某些服务来说如果直接暴露于公网上将会存在安全隐患。<br>使用stcp(secret tcp)类型的代理可以避免让任何人都能访问到要穿透的服务，但是访问者也需要运行另外一个frpc客户端。   </p><p>frps.ini 内容如下：    </p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">bind_port = 7000</span><br></pre></td></tr></table></figure><p>在需要暴露到内网的机器上部署 frpc，且配置如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr = x.x.x.x</span><br><span class="line">server_port = 7000</span><br><span class="line">[secret_ssh]</span><br><span class="line"><span class="built_in">type</span> = stcp</span><br><span class="line"><span class="comment"># 只有 sk 一致的用户才能访问到此服务</span></span><br><span class="line">sk = abcdefg</span><br><span class="line">local_ip = 127.0.0.1</span><br><span class="line">local_port = 22</span><br></pre></td></tr></table></figure><p>在想要访问内网服务的机器上也部署 frpc，且配置如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr = x.x.x.x</span><br><span class="line">server_port = 7000</span><br><span class="line">[secret_ssh_visitor]</span><br><span class="line"><span class="built_in">type</span> = stcp</span><br><span class="line"><span class="comment"># stcp 的访问者</span></span><br><span class="line">role = visitor</span><br><span class="line"><span class="comment"># 要访问的 stcp 代理的名字</span></span><br><span class="line">server_name = secret_ssh</span><br><span class="line">sk = abcdefg</span><br><span class="line"><span class="comment"># 绑定本地端口用于访问 SSH 服务</span></span><br><span class="line">bind_addr = 127.0.0.1</span><br><span class="line">bind_port = 6000</span><br></pre></td></tr></table></figure><p>通过SSH访问内网机器，假设用户名为test：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -oPort=6000 <span class="built_in">test</span>@127.0.0.1</span><br></pre></td></tr></table></figure>]]></content:encoded>
+      
+      
+      
+      <category domain="http://example.com/tags/frp-%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">frp 内网穿透</category>
+      
+      
+      <comments>http://example.com/2023/09/14/frp%E5%AE%89%E5%85%A8%E6%9A%B4%E9%9C%B2%E5%86%85%E7%BD%91%E6%9C%8D%E5%8A%A1/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>shell教程</title>
