@@ -9,28 +9,13 @@
     <atom:link href="http://example.com/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>逆风飞翔，展开翅膀</description>
-    <pubDate>Mon, 18 Sep 2023 09:24:56 GMT</pubDate>
+    <pubDate>Mon, 18 Sep 2023 10:09:23 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
       <title>进程间通信(IPC)介绍</title>
       <link>http://example.com/2023/09/18/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1-IPC-%E4%BB%8B%E7%BB%8D/</link>
       <guid>http://example.com/2023/09/18/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1-IPC-%E4%BB%8B%E7%BB%8D/</guid>
-      <pubDate>Mon, 18 Sep 2023 09:24:56 GMT</pubDate>
-      
-      
-      
-      
-      
-      
-      <comments>http://example.com/2023/09/18/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1-IPC-%E4%BB%8B%E7%BB%8D/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>进程间通信(IPC)介绍</title>
-      <link>http://example.com/2023/09/18/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E8%AE%AF/</link>
-      <guid>http://example.com/2023/09/18/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E8%AE%AF/</guid>
       <pubDate>Mon, 18 Sep 2023 09:24:56 GMT</pubDate>
       
         
@@ -47,7 +32,7 @@
       <category domain="http://example.com/tags/IPC-%E8%BF%9B%E7%A8%8B%E9%80%9A%E8%AE%AF/">IPC 进程通讯</category>
       
       
-      <comments>http://example.com/2023/09/18/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E8%AE%AF/#disqus_thread</comments>
+      <comments>http://example.com/2023/09/18/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1-IPC-%E4%BB%8B%E7%BB%8D/#disqus_thread</comments>
       
     </item>
     
