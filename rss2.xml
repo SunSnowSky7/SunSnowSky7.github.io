@@ -9,8 +9,32 @@
     <atom:link href="http://example.com/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>逆风飞翔，展开翅膀</description>
-    <pubDate>Thu, 28 Sep 2023 04:25:17 GMT</pubDate>
+    <pubDate>Sat, 07 Oct 2023 09:47:53 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>ESP32学习笔记</title>
+      <link>http://example.com/2023/10/07/ESP32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <guid>http://example.com/2023/10/07/ESP32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <pubDate>Sat, 07 Oct 2023 09:46:33 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h1 id=&quot;环境搭建&quot;&gt;&lt;a href=&quot;#环境搭建&quot; class=&quot;headerlink&quot; title=&quot;环境搭建&quot;&gt;&lt;/a&gt;环境搭建&lt;/h1&gt;</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1>]]></content:encoded>
+      
+      
+      
+      <category domain="http://example.com/tags/ESP32-MACOS/">ESP32 MACOS</category>
+      
+      
+      <comments>http://example.com/2023/10/07/ESP32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>mysql面试题</title>
