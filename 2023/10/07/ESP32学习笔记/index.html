@@ -23,18 +23,34 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="1. 环境搭建">
+  <meta name="description" content="1. 环境搭建平台：MacBook Pro软件：vscode + ESP-IDF硬件：ESP32 WROOM-32、macbook 拓展坞、USB数据线（连接esp32和笔记本）     1.1 下载安装vscode软件Mac版本的vscode 下载安装的过程省略，因为我会，所以默认都会了。下载完成之后，记得安装中文插件，当然英语好的老6可以忽略。	 安装完中文插件重启之后，就会显示中文字体。 1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ESP32学习笔记">
 <meta property="og:url" content="http://example.com/2023/10/07/ESP32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="冉冉的博客">
-<meta property="og:description" content="1. 环境搭建">
+<meta property="og:description" content="1. 环境搭建平台：MacBook Pro软件：vscode + ESP-IDF硬件：ESP32 WROOM-32、macbook 拓展坞、USB数据线（连接esp32和笔记本）     1.1 下载安装vscode软件Mac版本的vscode 下载安装的过程省略，因为我会，所以默认都会了。下载完成之后，记得安装中文插件，当然英语好的老6可以忽略。	 安装完中文插件重启之后，就会显示中文字体。 1">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2023/10/07/ESP32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-12.png">
+<meta property="og:image" content="http://example.com/2023/10/07/ESP32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-13.png">
+<meta property="og:image" content="http://example.com/2023/10/07/ESP32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/esp1.png">
+<meta property="og:image" content="http://example.com/2023/10/07/ESP32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/esp13.png">
+<meta property="og:image" content="http://example.com/2023/10/07/ESP32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/esp14.png">
+<meta property="og:image" content="http://example.com/2023/10/07/ESP32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/esp15.png">
+<meta property="og:image" content="http://example.com/2023/10/07/ESP32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-15.png">
+<meta property="og:image" content="http://example.com/2023/10/07/ESP32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-16.png">
+<meta property="og:image" content="http://example.com/2023/10/07/ESP32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/eps20.png">
+<meta property="og:image" content="http://example.com/2023/10/07/ESP32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/esp21.png">
+<meta property="og:image" content="http://example.com/2023/10/07/ESP32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/esp231.png">
+<meta property="og:image" content="http://example.com/2023/10/07/ESP32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/eps24.png">
+<meta property="og:image" content="http://example.com/2023/10/07/ESP32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/eps25.png">
+<meta property="og:image" content="http://example.com/2023/10/07/ESP32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/esp26.png">
+<meta property="og:image" content="http://example.com/2023/10/07/ESP32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/esp27.png">
 <meta property="article:published_time" content="2023-10-07T09:46:33.000Z">
-<meta property="article:modified_time" content="2023-10-09T09:49:28.754Z">
+<meta property="article:modified_time" content="2023-10-09T09:50:46.212Z">
 <meta property="article:author" content="莺语盈风">
 <meta property="article:tag" content="ESP32 MACOS">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/10/07/ESP32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-12.png">
 
 <link rel="canonical" href="http://example.com/2023/10/07/ESP32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
 
@@ -207,7 +223,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-09 17:49:28" itemprop="dateModified" datetime="2023-10-09T17:49:28+08:00">2023-10-09</time>
+                <time title="修改时间：2023-10-09 17:50:46" itemprop="dateModified" datetime="2023-10-09T17:50:46+08:00">2023-10-09</time>
               </span>
 
           
@@ -223,7 +239,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>7</span>
+              <span>782</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -242,74 +258,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="1-环境搭建"><a href="#1-环境搭建" class="headerlink" title="1. 环境搭建"></a>1. 环境搭建</h1><!-- more --!>
-平台：MacBook Pro   
-软件：vscode + ESP-IDF  
-硬件：ESP32 WROOM-32、macbook 拓展坞、USB数据线（连接esp32和笔记本）    
+        <h1 id="1-环境搭建"><a href="#1-环境搭建" class="headerlink" title="1. 环境搭建"></a>1. 环境搭建</h1><p>平台：MacBook Pro<br>软件：vscode + ESP-IDF<br>硬件：ESP32 WROOM-32、macbook 拓展坞、USB数据线（连接esp32和笔记本）    </p>
+<h2 id="1-1-下载安装vscode软件"><a href="#1-1-下载安装vscode软件" class="headerlink" title="1.1 下载安装vscode软件"></a>1.1 下载安装vscode软件</h2><p><a target="_blank" rel="noopener" href="https://code.visualstudio.com/sha/download?build=stable&os=cli-darwin-arm64">Mac版本的vscode</a></p>
+<p>下载安装的过程省略，因为我会，所以默认都会了。<br>下载完成之后，记得安装中文插件，当然英语好的老6可以忽略。	<br><img src="image-12.png" alt="Alt text"></p>
+<p>安装完中文插件重启之后，就会显示中文字体。</p>
+<h2 id="1-2-安装esp-idf-插件"><a href="#1-2-安装esp-idf-插件" class="headerlink" title="1.2 安装esp-idf 插件"></a>1.2 安装esp-idf 插件</h2><p>重新打开vscode，然后在扩展中搜索espress,见下图：<br><img src="image-13.png" alt="Alt text"></p>
+<p>安装完成后,在左侧点击刚安装好的扩展程序（乐鑫的图标），初始界面如下图<br><img src="esp1.png" alt="Alt text"></p>
+<p>选择<code>EXPRESS</code>,然后按照下图选择并安装esp-idf的安装包，选择好之后，点击左下角的<code>install</code><br><img src="esp13.png" alt="esp"></p>
+<p>安装中。。。视网络环境看，大概需要20分钟左右下载安装完毕；<br><img src="esp14.png" alt="esp2"></p>
+<p>等出现下图中的日志时，说明安装成功。<br><img src="esp15.png" alt="esp3"></p>
+<p>到此，<strong>环境搭建好了～撒欢儿～哏儿～</strong></p>
+<h1 id="2-第一次例程下载"><a href="#2-第一次例程下载" class="headerlink" title="2. 第一次例程下载"></a>2. 第一次例程下载</h1><h2 id="2-1-hello-world-横空出世"><a href="#2-1-hello-world-横空出世" class="headerlink" title="2.1 hello_world 横空出世"></a>2.1 hello_world 横空出世</h2><p>作为程序猿（媛），学习新知识的一个案例必须是<code>hello world</code>.</p>
+<p>先点击左右乐鑫的图标，然后点击F1，出来一个搜索框，然后输入<code>idf:show</code> ,看下图：<br><img src="image-15.png" alt="Alt text"></p>
+<p>如果出现了下面选择路径的情况的话，直接选择自己安装的路径即可。<br><img src="image-16.png" alt="Alt text"></p>
+<p>111111111111111<br><img src="eps20.png" alt="esp20"></p>
+<p>选择保存的路径：<br><img src="esp21.png"><br>即可看到下图所示的工程，箭头所指即为主程序，<br><img src="esp231.png"><br><strong>重点！！！重点！！！这张图一定要记住</strong><br><img src="eps24.png"><br>按照上图的配置，我这里修改的地方如下：</p>
+<ul>
+<li>串口选择的是<code>/dev/cu.usbserial-0001</code></li>
+<li>芯片类型选择的 <code>esp32</code></li>
+<li>flash method 选择的是 <code>UART</code><br>配置好之后，点击编译，如下图所示：<br><img src="eps25.png"></li>
+</ul>
+<p>点击⚡️按钮将程序下载到开发板里面去，下图为下载完成之后的亚子～<br><img src="esp26.png"></p>
+<p>如上图下载完成之后，电机那个小电视图标，就可以看到开发板打印的东西了。<br><strong>完美～～～    perfect ！！！</strong><br><img src="esp27.png"></p>
 
-
-## 1.1 下载安装vscode软件
-
-[Mac版本的vscode](https://code.visualstudio.com/sha/download?build=stable&os=cli-darwin-arm64)
-
-下载安装的过程省略，因为我会，所以默认都会了。  
-下载完成之后，记得安装中文插件，当然英语好的老6可以忽略。	
-![Alt text](image-12.png)
-
-安装完中文插件重启之后，就会显示中文字体。
-
-## 1.2 安装esp-idf 插件
-重新打开vscode，然后在扩展中搜索espress,见下图：
-![Alt text](image-13.png)
-
-
-安装完成后,在左侧点击刚安装好的扩展程序（乐鑫的图标），初始界面如下图
-![Alt text](esp1.png)
-
-选择`EXPRESS`,然后按照下图选择并安装esp-idf的安装包，选择好之后，点击左下角的`install`
-![esp](esp13.png)
-
-安装中。。。视网络环境看，大概需要20分钟左右下载安装完毕；  
-![esp2](esp14.png)
-
-等出现下图中的日志时，说明安装成功。
-![esp3](esp15.png)
-
-到此，**环境搭建好了～撒欢儿～哏儿～**
-
-# 2. 第一次例程下载
-## 2.1 hello_world 横空出世
-作为程序猿（媛），学习新知识的一个案例必须是`hello world`.
-
-先点击左右乐鑫的图标，然后点击F1，出来一个搜索框，然后输入`idf:show` ,看下图：  
-![Alt text](image-15.png)
-
-如果出现了下面选择路径的情况的话，直接选择自己安装的路径即可。
-![Alt text](image-16.png)
-
-111111111111111
-![esp20](eps20.png)
-
-选择保存的路径：
-![](esp21.png)
-即可看到下图所示的工程，箭头所指即为主程序，
-![](esp231.png)
-**重点！！！重点！！！这张图一定要记住**
-![](eps24.png)
-按照上图的配置，我这里修改的地方如下：
-- 串口选择的是`/dev/cu.usbserial-0001`
-- 芯片类型选择的 `esp32`
-- flash method 选择的是 `UART`
-配置好之后，点击编译，如下图所示：
-![](eps25.png)
-
-点击⚡️按钮将程序下载到开发板里面去，下图为下载完成之后的亚子～
-![](esp26.png)
-
-如上图下载完成之后，电机那个小电视图标，就可以看到开发板打印的东西了。      
-**完美～～～    perfect ！！！**
-![](esp27.png)
--->
     </div>
 
     
@@ -435,7 +406,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-number">1.</span> <span class="nav-text">1. 环境搭建</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-number">1.</span> <span class="nav-text">1. 环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85vscode%E8%BD%AF%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 下载安装vscode软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E5%AE%89%E8%A3%85esp-idf-%E6%8F%92%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 安装esp-idf 插件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BE%8B%E7%A8%8B%E4%B8%8B%E8%BD%BD"><span class="nav-number">2.</span> <span class="nav-text">2. 第一次例程下载</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-hello-world-%E6%A8%AA%E7%A9%BA%E5%87%BA%E4%B8%96"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 hello_world 横空出世</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -508,7 +479,7 @@
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:45</span>
+    <span title="站点阅读时长">1:46</span>
 </div>
   <div class="powered-by">
     <!--由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动 -->
