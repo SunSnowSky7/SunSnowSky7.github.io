@@ -9,8 +9,29 @@
     <atom:link href="http://example.com/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>逆风飞翔，展开翅膀</description>
-    <pubDate>Mon, 09 Oct 2023 09:59:18 GMT</pubDate>
+    <pubDate>Thu, 12 Oct 2023 09:53:56 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>AIX命令相关杂记</title>
+      <link>http://example.com/2023/10/12/AIX%E5%91%BD%E4%BB%A4%E7%9B%B8%E5%85%B3%E6%9D%82%E8%AE%B0/</link>
+      <guid>http://example.com/2023/10/12/AIX%E5%91%BD%E4%BB%A4%E7%9B%B8%E5%85%B3%E6%9D%82%E8%AE%B0/</guid>
+      <pubDate>Thu, 12 Oct 2023 09:50:58 GMT</pubDate>
+      
+      <description>&lt;p&gt;以下命令比较随意，没有顺序，仅仅当作笔记使用。&lt;/p&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p>以下命令比较随意，没有顺序，仅仅当作笔记使用。</p><span id="more"></span><h2 id="1-prtconf"><a href="#1-prtconf" class="headerlink" title="1. prtconf"></a>1. prtconf</h2><ul><li>可以查看系统所有的信息 cpu 内存 硬盘等</li></ul><h2 id="2-nmon"><a href="#2-nmon" class="headerlink" title="2.nmon"></a>2.nmon</h2><p>-可以实时查看AIX信息，比topas好用老多了。</p><blockquote><p>用法：输入nmon 然后输入h会看到相关参数。<br>贼拉好用～怒赞呀～用这个命令发现了一个超级大bug。</p></blockquote>]]></content:encoded>
+      
+      
+      
+      <category domain="http://example.com/tags/AIX/">AIX</category>
+      
+      
+      <comments>http://example.com/2023/10/12/AIX%E5%91%BD%E4%BB%A4%E7%9B%B8%E5%85%B3%E6%9D%82%E8%AE%B0/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>ESP32学习笔记</title>
