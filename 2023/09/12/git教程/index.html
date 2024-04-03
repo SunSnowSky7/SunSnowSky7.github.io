@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="简介https:&#x2F;&#x2F;juejin.cn&#x2F;post&#x2F;6844904198773932039 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;97403330 Git是什么？Git是目前世界上最先进的分布式版本控制系统。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git 教程">
+<meta property="og:url" content="http://example.com/2023/09/12/git%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="冉冉的博客">
+<meta property="og:description" content="简介https:&#x2F;&#x2F;juejin.cn&#x2F;post&#x2F;6844904198773932039 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;97403330 Git是什么？Git是目前世界上最先进的分布式版本控制系统。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/.com//git-1.jpg">
+<meta property="og:image" content="http://example.com/.com//git-2.png">
+<meta property="og:image" content="http://example.com/.com//git-3.png">
+<meta property="og:image" content="http://example.com/.com//git-4.png">
+<meta property="og:image" content="http://example.com/.com//git-5.png">
+<meta property="og:image" content="http://example.com/.com//git-6.png">
+<meta property="og:image" content="http://example.com/.com//git-7.png">
+<meta property="og:image" content="http://example.com/.com//git-8.png">
+<meta property="og:image" content="http://example.com/.com//git-10.png">
+<meta property="og:image" content="http://example.com/.com//git-11.png">
+<meta property="og:image" content="http://example.com/.com//git-12.png">
+<meta property="og:image" content="http://example.com/.com//git-13.png">
+<meta property="article:published_time" content="2023-09-12T05:31:46.000Z">
+<meta property="article:modified_time" content="2024-04-03T07:55:28.165Z">
+<meta property="article:author" content="莺语盈风">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/.com//git-1.jpg">
+
+<link rel="canonical" href="http://example.com/2023/09/12/git%E6%95%99%E7%A8%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>git 教程 | 冉冉的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/rss2.xml" title="冉冉的博客" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">冉冉的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-resources">
+
+    <a href="/resources/" rel="section"><i class="download fa-fw"></i>资源</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/12/git%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/./images/xiao.jpg">
+      <meta itemprop="name" content="莺语盈风">
+      <meta itemprop="description" content="逆风飞翔，展开翅膀">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冉冉的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          git 教程
+        </h1>
+
+        <div class="post-meta">
+
+	  
+    		<i class="fa fa-thumb-tack"></i>
+    		<font color=7D26CD>置顶</font>
+    		<span class="post-meta-divider">|</span>
+	  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-09-12 13:31:46" itemprop="dateCreated datePublished" datetime="2023-09-12T13:31:46+08:00">2023-09-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-04-03 15:55:28" itemprop="dateModified" datetime="2024-04-03T15:55:28+08:00">2024-04-03</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904198773932039">https://juejin.cn/post/6844904198773932039</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/97403330">https://zhuanlan.zhihu.com/p/97403330</a></p>
+<h2 id="Git是什么？"><a href="#Git是什么？" class="headerlink" title="Git是什么？"></a>Git是什么？</h2><p>Git是目前世界上最先进的分布式版本控制系统。</p>
+<span id="more"></span>
+<h2 id="工作原理-流程："><a href="#工作原理-流程：" class="headerlink" title="工作原理 &#x2F; 流程："></a>工作原理 &#x2F; 流程：</h2><p><img src="/.com//git-1.jpg" alt="流程"></p>
+<ul>
+<li>Workspace：工作区</li>
+<li>Index &#x2F; Stage：暂存区</li>
+<li>Repository：仓库区（或本地仓库）</li>
+<li>Remote：远程仓库</li>
+</ul>
+<h1 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h1><h2 id="设置用户名和邮箱"><a href="#设置用户名和邮箱" class="headerlink" title="设置用户名和邮箱"></a>设置用户名和邮箱</h2><p>点击”Git Bash Here “以打开Git命令行窗口:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">&quot;用户名&quot;</span></span><br><span class="line">$ git config --global user.email <span class="string">&quot;邮箱地址&quot;</span></span><br></pre></td></tr></table></figure>
+<p>设置好用户信息，当进行项目修改的时候就会记录用户名</p>
+<h2 id="配置SSH-密钥"><a href="#配置SSH-密钥" class="headerlink" title="配置SSH 密钥"></a>配置SSH 密钥</h2><h3 id="输入命令："><a href="#输入命令：" class="headerlink" title="输入命令："></a>输入命令：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;注册邮箱&quot;</span></span><br></pre></td></tr></table></figure>
+<p>之后会要求确认路径和输入密码，我们这使用默认的一路回车就行。</p>
+<h3 id="找到id-rsa-pub文件。"><a href="#找到id-rsa-pub文件。" class="headerlink" title="找到id_rsa.pub文件。"></a>找到id_rsa.pub文件。</h3><p>成功的话会在 ~&#x2F; 下生成 .ssh 文件夹，进去，打开 id_rsa.pub，复制里面的 key。 </p>
+<p>回到 github 上，进入 Account &#x3D;&gt; Settings（账户配置）找到ssh密钥栏，然后将复制的密钥黏贴。</p>
+<h3 id="验证是否成功"><a href="#验证是否成功" class="headerlink" title="验证是否成功"></a>验证是否成功</h3><p>输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p>结果：Hi xxxx! You’ve successfully authenticated, but GitHub does not provide shell access.</p>
+<h3 id="然后克隆目录到新建的目录中："><a href="#然后克隆目录到新建的目录中：" class="headerlink" title="然后克隆目录到新建的目录中："></a>然后克隆目录到新建的目录中：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> ssh地址</span><br></pre></td></tr></table></figure>
+<p>线上的仓库ssh和https地址可以在clone和download中查看</p>
+<h2 id="创建目录并初始化"><a href="#创建目录并初始化" class="headerlink" title="创建目录并初始化"></a>创建目录并初始化</h2><ul>
+<li>使用命令： mkdir 目录 创建目录；</li>
+<li>使用命令：cd  目录 进入创建的目录；</li>
+<li>进入指定的目录之后，执行命令： git init 初始化目录。<br>即让Git知道需要他来管理这个目录，执行后，打开这个项目目录下，点击隐藏目录你会发现多了一个.git文件夹。不能删除，也不能随意更改。到这里就可以在里面进行开发。</li>
+</ul>
+<h2 id="git-add将工作区文件添加到缓冲区"><a href="#git-add将工作区文件添加到缓冲区" class="headerlink" title="git add将工作区文件添加到缓冲区"></a>git add将工作区文件添加到缓冲区</h2><p>使用命令 git add 可以添加一个文件，也可以同时添加多个文件。</p>
+<ul>
+<li>语法一：$ git add 文件名</li>
+<li>语法二：$ git add 文件名1 文件名2 文件名3 ……</li>
+<li>语法三：$ git add .    【添加当前目录到缓存区中】<br><img src="/.com//git-2.png" alt="gitadd"></li>
+</ul>
+<h2 id="git-commit提交到版本库"><a href="#git-commit提交到版本库" class="headerlink" title="git commit提交到版本库"></a>git commit提交到版本库</h2><p>使用命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m <span class="string">&quot;注释内容&quot;</span></span><br></pre></td></tr></table></figure>
+<p>如果创建了新的文件，从add开始，重复上述操作即可。如果修改了已提交的文件内容，再从add开始重新提交就好了。这里的提交等操作只是提交到Git本地仓库。<br><img src="/.com//git-3.png" alt="gitcommit"></p>
+<h2 id="git-status检查是否还有文件要提交（非必须）"><a href="#git-status检查是否还有文件要提交（非必须）" class="headerlink" title="git status检查是否还有文件要提交（非必须）"></a>git status检查是否还有文件要提交（非必须）</h2><p>使用命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+<p><img src="/.com//git-4.png" alt="gitstatus"><br>说明没有任何文件未提交，但是我现在继续来改下readme.txt内容，比如我在下面添加一行内容，继续使用git status来查看下结果，如下：<br><img src="/.com//git-5.png" alt="gitstatus2"></p>
+<ul>
+<li>上面的命令告诉我们 readme.txt文件已被修改，但是未被提交的修改。把文件添加到版本库中。</li>
+<li>首先要明确下，所有的版本控制系统，**<em>只能跟踪文本文件的改动，比如txt文件，网页，所有程序的代码等，Git也不列外，</em>** 版本控制系统可以告诉你每次的改动，**<em>但是图片，视频这些二进制文件，虽能也能由版本控制系统管理，但没法跟踪文件的变化，</em>** 只能把二进制文件每次改动串起来，也就是知道图片从1kb变成2kb，但是到底改了啥，版本控制也不知道。</li>
+</ul>
+<h2 id="git-diff修改文件对比（非必须）"><a href="#git-diff修改文件对比（非必须）" class="headerlink" title="git diff修改文件对比（非必须）"></a>git diff修改文件对比（非必须）</h2><p>接着上面的操作，使用命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff 文件名</span><br></pre></td></tr></table></figure>
+<p><img src="/.com//git-6.png" alt="gitdiff"><br>然后使用git add 和git commit进行提交操作。</p>
+<h2 id="版本回退（非必须）"><a href="#版本回退（非必须）" class="headerlink" title="版本回退（非必须）"></a>版本回退（非必须）</h2><p>接着上面的2.6和2.7的改动，此次在文件中又添加了一行文本。也就是现在已经有三个版本了。<br><img src="/.com//git-7.png" alt="gitlog"></p>
+<h3 id="使用git-log-查看历史版本"><a href="#使用git-log-查看历史版本" class="headerlink" title="使用git log 查看历史版本"></a>使用git log 查看历史版本</h3><p>使用git  log 命令查看最近三次的版本。<br><img src="/.com//git-8.png">		 </p>
+<p>git log命令显示从最近到最远的显示日志，我们可以看到最近三次提交。</p>
+<ul>
+<li>如果嫌上面显示的信息太多的话，我们可以使用命令</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --pretty=oneline </span><br><span class="line"> ````</span><br><span class="line">演示如下</span><br><span class="line">![](git-9.png)</span><br><span class="line"></span><br><span class="line"><span class="comment">### 使用命令git reset –hard来回退版本</span></span><br><span class="line">现在我想使用版本回退操作，我想把当前的版本回退到上一个版本，要使用什么命令呢？可以使用如下2种命令：</span><br><span class="line">- 第一种是：</span><br><span class="line">```bash</span><br><span class="line">git reset --hard HEAD^ </span><br></pre></td></tr></table></figure>
+<p>那么如果要回退到上上个版本只需把HEAD^ 改成 HEAD^^ 以此类推。<br><img src="/.com//git-10.png"></p>
+<ul>
+<li><p>那如果要回退到前100个版本的话，使用上面的方法肯定不方便，我们可以使用下面的简便命令操作即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD~100 </span><br></pre></td></tr></table></figure>
+<p><img src="/.com//git-11.png"></p>
+</li>
+<li><p><strong><em>注意：HEAD^  估计是代指上个版本的版本号。实际有用的命令是git reset –hard 版本号</em></strong></p>
+</li>
+</ul>
+<h3 id="回退到最新版本"><a href="#回退到最新版本" class="headerlink" title="回退到最新版本"></a>回退到最新版本</h3><p>如果按照2.8.2 我们可以回退到历史的版本，但是如果想再回到现在的最新的版本。就可以通过版本号来回退。</p>
+<h4 id="首先使用命令：git-reflog来获取最新版本的版本号。"><a href="#首先使用命令：git-reflog来获取最新版本的版本号。" class="headerlink" title="首先使用命令：git reflog来获取最新版本的版本号。"></a>首先使用命令：git reflog来获取最新版本的版本号。</h4><p><img src="/.com//git-12.png">	<br>注意：最新版本，一般情况下在head{1}里面，根据后面注释来选择。<br>根据git reflog 可以看到最新版本的版本号是：dd6004f6.</p>
+<h4 id="然后使用命令：git-reset-–hard-版本号-来回退最新版本"><a href="#然后使用命令：git-reset-–hard-版本号-来回退最新版本" class="headerlink" title="然后使用命令：git reset –hard 版本号 来回退最新版本"></a>然后使用命令：git reset –hard 版本号 来回退最新版本</h4><p>在得知来最新版本号之后，就可以根据命令git reset –hard 版本号来回退到最新版本。<br><img src="/.com//git-13.png"></p>
+<p>#####################################</p>
+<h1 id="git-branch-查看分支"><a href="#git-branch-查看分支" class="headerlink" title="git branch 查看分支"></a>git branch 查看分支</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch <span class="comment">#查看本地分支</span></span><br><span class="line"></span><br><span class="line">git branch -a   <span class="comment">#查看远程所有分支</span></span><br></pre></td></tr></table></figure>
+<h1 id="git-checkout-切换分支"><a href="#git-checkout-切换分支" class="headerlink" title="git checkout 切换分支"></a>git checkout 切换分支</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout xxxx <span class="comment">#切换到xxxx分支</span></span><br><span class="line">git checkout -b xxxx <span class="comment">#切换并新建xxxx分支</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="笔记："><a href="#笔记：" class="headerlink" title="笔记："></a>笔记：</h1><p>如果同一个分支有好多个同事同时开发，需要使用local配置。</p>
+<p>配置局部用户名和邮箱有两种方式。</p>
+<h3 id="方式1"><a href="#方式1" class="headerlink" title="方式1:"></a>方式1:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --<span class="built_in">local</span> user.name <span class="string">&#x27;xxxxx&#x27;</span></span><br><span class="line">git config --<span class="built_in">local</span> user.email <span class="string">&#x27;xxxx@xxx&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="方式2"><a href="#方式2" class="headerlink" title="方式2:"></a>方式2:</h3><p>将远程的仓库先git clone下来，然后进入到仓库的目录里。修改 .git&#x2F;config在末尾添加下面内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[user]</span><br><span class="line">    name = <span class="string">&#x27;xxxxxx&#x27;</span></span><br><span class="line">    email = <span class="string">&#x27;xxxxx@xxx&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>无论采用何种方式修改添加，都可以使用下面的命令查询是否修改成功：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --list --<span class="built_in">local</span></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+    
+     <div>
+       <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------本文结束<i class="fa fa-paw"></i>棒棒哒～-------------</div>
+    
+</div>
+
+     </div>
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>莺语盈风
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/09/12/git%E6%95%99%E7%A8%8B/" title="git 教程">http://example.com/2023/09/12/git教程/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/git/" rel="tag"># git</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/09/12/shell%E6%95%99%E7%A8%8B/" rel="prev" title="shell教程">
+      <i class="fa fa-chevron-left"></i> shell教程
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/09/14/frp%E5%AE%89%E5%85%A8%E6%9A%B4%E9%9C%B2%E5%86%85%E7%BD%91%E6%9C%8D%E5%8A%A1/" rel="next" title="frp安全暴露内网服务">
+      frp安全暴露内网服务 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">Git是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86-%E6%B5%81%E7%A8%8B%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">工作原理 &#x2F; 流程：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.</span> <span class="nav-text">使用步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E7%94%A8%E6%88%B7%E5%90%8D%E5%92%8C%E9%82%AE%E7%AE%B1"><span class="nav-number">2.1.</span> <span class="nav-text">设置用户名和邮箱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AESSH-%E5%AF%86%E9%92%A5"><span class="nav-number">2.2.</span> <span class="nav-text">配置SSH 密钥</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="nav-number">2.2.1.</span> <span class="nav-text">输入命令：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%BE%E5%88%B0id-rsa-pub%E6%96%87%E4%BB%B6%E3%80%82"><span class="nav-number">2.2.2.</span> <span class="nav-text">找到id_rsa.pub文件。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F"><span class="nav-number">2.2.3.</span> <span class="nav-text">验证是否成功</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%84%B6%E5%90%8E%E5%85%8B%E9%9A%86%E7%9B%AE%E5%BD%95%E5%88%B0%E6%96%B0%E5%BB%BA%E7%9A%84%E7%9B%AE%E5%BD%95%E4%B8%AD%EF%BC%9A"><span class="nav-number">2.2.4.</span> <span class="nav-text">然后克隆目录到新建的目录中：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%9B%AE%E5%BD%95%E5%B9%B6%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">2.3.</span> <span class="nav-text">创建目录并初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-add%E5%B0%86%E5%B7%A5%E4%BD%9C%E5%8C%BA%E6%96%87%E4%BB%B6%E6%B7%BB%E5%8A%A0%E5%88%B0%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="nav-number">2.4.</span> <span class="nav-text">git add将工作区文件添加到缓冲区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-commit%E6%8F%90%E4%BA%A4%E5%88%B0%E7%89%88%E6%9C%AC%E5%BA%93"><span class="nav-number">2.5.</span> <span class="nav-text">git commit提交到版本库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-status%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E8%BF%98%E6%9C%89%E6%96%87%E4%BB%B6%E8%A6%81%E6%8F%90%E4%BA%A4%EF%BC%88%E9%9D%9E%E5%BF%85%E9%A1%BB%EF%BC%89"><span class="nav-number">2.6.</span> <span class="nav-text">git status检查是否还有文件要提交（非必须）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-diff%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E5%AF%B9%E6%AF%94%EF%BC%88%E9%9D%9E%E5%BF%85%E9%A1%BB%EF%BC%89"><span class="nav-number">2.7.</span> <span class="nav-text">git diff修改文件对比（非必须）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80%EF%BC%88%E9%9D%9E%E5%BF%85%E9%A1%BB%EF%BC%89"><span class="nav-number">2.8.</span> <span class="nav-text">版本回退（非必须）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8git-log-%E6%9F%A5%E7%9C%8B%E5%8E%86%E5%8F%B2%E7%89%88%E6%9C%AC"><span class="nav-number">2.8.1.</span> <span class="nav-text">使用git log 查看历史版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E9%80%80%E5%88%B0%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC"><span class="nav-number">2.8.2.</span> <span class="nav-text">回退到最新版本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A6%96%E5%85%88%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%9Agit-reflog%E6%9D%A5%E8%8E%B7%E5%8F%96%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC%E7%9A%84%E7%89%88%E6%9C%AC%E5%8F%B7%E3%80%82"><span class="nav-number">2.8.2.1.</span> <span class="nav-text">首先使用命令：git reflog来获取最新版本的版本号。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%84%B6%E5%90%8E%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%9Agit-reset-%E2%80%93hard-%E7%89%88%E6%9C%AC%E5%8F%B7-%E6%9D%A5%E5%9B%9E%E9%80%80%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC"><span class="nav-number">2.8.2.2.</span> <span class="nav-text">然后使用命令：git reset –hard 版本号 来回退最新版本</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-branch-%E6%9F%A5%E7%9C%8B%E5%88%86%E6%94%AF"><span class="nav-number">3.</span> <span class="nav-text">git branch 查看分支</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-checkout-%E5%88%87%E6%8D%A2%E5%88%86%E6%94%AF"><span class="nav-number">4.</span> <span class="nav-text">git checkout 切换分支</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%94%E8%AE%B0%EF%BC%9A"><span class="nav-number">5.</span> <span class="nav-text">笔记：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F1"><span class="nav-number">5.0.1.</span> <span class="nav-text">方式1:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F2"><span class="nav-number">5.0.2.</span> <span class="nav-text">方式2:</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="莺语盈风"
+      src="/./images/xiao.jpg">
+  <p class="site-author-name" itemprop="name">莺语盈风</p>
+  <div class="site-description" itemprop="description">逆风飞翔，展开翅膀</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/weixin_44284939?type=blog" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_44284939?type&#x3D;blog" rel="noopener" target="_blank"><i class="codiepie fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备2023024185号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 2023 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">莺语盈风</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">196k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:59</span>
+</div>
+  <div class="powered-by">
+    <!--由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动 -->
+  </div>
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
