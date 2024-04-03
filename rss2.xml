@@ -35,28 +35,6 @@
     </item>
     
     <item>
-      <title></title>
-      <link>http://example.com/2024/03/26/STM32%E5%86%85%E5%AD%98%E7%AE%80%E8%BF%B0/STM32%E5%86%85%E5%AD%98%E7%AE%80%E8%BF%B0%EF%BC%88Flash%E5%92%8CSRAM%EF%BC%89/</link>
-      <guid>http://example.com/2024/03/26/STM32%E5%86%85%E5%AD%98%E7%AE%80%E8%BF%B0/STM32%E5%86%85%E5%AD%98%E7%AE%80%E8%BF%B0%EF%BC%88Flash%E5%92%8CSRAM%EF%BC%89/</guid>
-      <pubDate>Tue, 26 Mar 2024 01:58:38 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h1 id=&quot;STM32内存简述（Flash和SRAM）&quot;&gt;&lt;a href=&quot;#STM32内存简述（Flash和SRAM）&quot; class=&quot;headerlink&quot; title=&quot;STM32内存简述（Flash和SRAM）&quot;&gt;&lt;/a&gt;STM32内存简述（Flash和SRAM）&lt;/</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h1 id="STM32内存简述（Flash和SRAM）"><a href="#STM32内存简述（Flash和SRAM）" class="headerlink" title="STM32内存简述（Flash和SRAM）"></a>STM32内存简述（Flash和SRAM）</h1><h2 id="1-STM32内存简述"><a href="#1-STM32内存简述" class="headerlink" title="1. STM32内存简述"></a>1. STM32内存简述</h2><h3 id="1-1-STM32寻址范围"><a href="#1-1-STM32寻址范围" class="headerlink" title="1.1. STM32寻址范围"></a>1.1. STM32寻址范围</h3><ol><li><p>STM32是一个32位的单片机，因此，它有32根地址线，每个地址线有两种状态：导通 或 不导通。</p></li><li><p>单片机内存的地址访问存储单元是按照字节编址的。</p><p> 按照字节编址，也就是说，访问一个地址上存储的数据，得到的是一个字节的数据。</p></li></ol><p>根据上述两条，可以得出结论：</p><ol><li><p>STM32的寻址（内存）大小为：2^32（字节） &#x3D; 4G（字节）</p></li><li><p>STM32的寻址范围为：0X0000 0000 ~ 0XFFFF FFFF</p></li></ol><h2 id="1-2-存储器功能划分"><a href="#1-2-存储器功能划分" class="headerlink" title="1.2. 存储器功能划分"></a>1.2. 存储器功能划分</h2><p>上述存储地址被分为了8个块（目前我用到的芯片F1、F4、L4的都是，其他的没用过不确定）。<br>如下表所示：</p><p><img src="/.com//1.png"></p><p>比如，这里打开STM32L475的芯片手册上可以看到，从0X0000 0000 ~ 0XFFFF FFFF被分成了八份，也就是八个块。</p><p><img src="/.com//a836f07702ee116a356dea6bf8a17669.png"></p><h1 id="2-SRAM、ROM位置"><a href="#2-SRAM、ROM位置" class="headerlink" title="2. SRAM、ROM位置"></a>2. SRAM、ROM位置</h1><p>简单说：</p><ul><li><p>RAM：读写速度快、掉电数据丢失；类比于电脑内存的作用。</p></li><li><p>ROM：读写速度相对慢、掉电数据仍在；类比于电脑硬盘的作用。</p></li></ul><p>其中对于STM32而言，SRAM就是内存；Flash就是硬盘。<br><img src="/.com//3"></p><p>以最最最常见的STM32F103C8T6为例：<br><img src="/.com//4"><br>它有64K字节的Flash、20K字节的RAM。</p><p>使用CubeMX对该芯片创建一个工程，然后点击魔术棒可以看到：</p><ol><li><p>它的内置ROM起始地址为<code>0X0800 0000</code>，大小为<code>0X10000</code>，也就是FLASH的大小为：0X10000个字节 &#x3D; 65536个字节 &#x3D; 64k个字节 &#x3D; 64kBytes。</p></li><li><p>它的内置RAM起始地址为<code>0X2000 0000</code>，大小为<code>0X5000</code>，也就是RAM的大小为：0X5000个字节 &#x3D; 20480个字节 &#x3D; 20k个字节 &#x3D; 20kBytes。<br><img src="/.com//5"></p></li></ol><p>对比一下芯片的数据手册：可以看到，其中FLASH位于第一块（索引0）的中间区域，RAM位于第二块（索引1）的开头。<br><img src="/.com//6"></p><blockquote><p>如果在KEIL软件中使用STLINK下载代码，就会发现代码是从0X0800 0000处开始保存的。</p></blockquote><p>但是对于部分芯片来讲，其不止有一块RAM，比如<strong>STM32L475VET6</strong>，它有512K字节的Flash、128K字节的RAM。</p><p><img src="/.com//7"></p><p>同样的使用CubeMX对该芯片创建一个工程，然后点击魔术棒：</p><p>它的内置ROM起始地址为<code>0X0800 0000</code>，大小为<code>0X80000</code>，也就是FLASH的大小为：0X80000个字节 &#x3D; 524288个字节 &#x3D; 512k个字节 &#x3D; 512kBytes。</p><p>它的内置RAM分为两块，第一块起始地址为<code>0X2000 0000</code>，大小为<code>0X18000</code>；第二块起始地址为<code>0X1000 000</code>，大小为<code>0X8000</code>，也就是RAM的大小为：0X18000+0X8000个字节 &#x3D; 0X20000个字节 &#x3D; 131072个字节 &#x3D; 128k个字节 &#x3D; 128kBytes。<br><img src="/.com//8"><br>同样对比一下芯片的数据手册：可以看到，其中FLASH位于第一块（索引0）的中间区域，RAM1位于第二块（索引1）的开头，RAM2位于第一块（索引0）的中间区域。<br><img src="/.com//9"></p><p>通过对比两个芯片的内存分布，可以看到，不同芯片的分布是有点差别的。</p><blockquote><p>了解这部分的内容主要是因为：在使用内存池的时候，要知道内存池到底是怎么划分的，可以划分几个内存池，每个内存池的大小最大可以划分多大，都要参考这部分的内容。</p><p>另外关注一下：地址0x1FFFF 0000到0x1FFF 7000这部分，这部分是系统存储器，不需要我们用户来操作，但是要知道这部分出厂的时候就已经存了有东西的，后面看到Bootloader的时候会说到。</p></blockquote><h2 id="3-程序占用内存大小"><a href="#3-程序占用内存大小" class="headerlink" title="3. 程序占用内存大小"></a>3. 程序占用内存大小</h2><h3 id="3-1-查看程序大小"><a href="#3-1-查看程序大小" class="headerlink" title="3.1. 查看程序大小"></a>3.1. 查看程序大小</h3><p>使用 CubeMX 创建一个 stm32 工程，创建完成后什么也不写，直接使用 Keil 对编写的程序进行编译，编译完成之后，软件最下方会提示编写的程序所占空间的大小。<br><img src="/.com//10"></p><p>也可以在工程目录中保存编译结果的文件夹中找到.map文件，在文件最下方查看更详细的信息。</p><p><img src="/.com//11"></p><h3 id="3-2-占用内存分析"><a href="#3-2-占用内存分析" class="headerlink" title="3.2. 占用内存分析"></a>3.2. 占用内存分析</h3><p>数据类型解释：</p><ul><li><p>Code：代码，也就是编译之后产生的机器指令。</p></li><li><p>RO_data：Read Only data，只读数据域，指程序中用到的只读数据，这些数据被存储在ROM区，因而程序不能修改其内容。C语言中const关键字定义的变量就是典型的RO-data。这部分在程序运行过程中不能被更改，因此在运行时只需要来读取即可，无需占用 RAM 空间。</p></li><li><p>RW_data：Read Write data，可读写数据域，指初始化为“非0值”的可读写数据，程序刚运行时，这些数据具有非0的初始值，且运行的时候它们会常驻在RAM区，因而应用程序可以修改其内容。C语言中定义的全局变量，且定义时赋予“非0值”给该变量进行初始化。</p></li><li><p>ZI_data：Zero Initialie data，即0初始化数据，它指初始化为“0值”的可读写数据域。它与RW-data的区别是程序刚运行时这些数据初始值全都为 0，而后续运行过程与RW-data的性质一样，它们也常驻在RAM区，因而应用程序可以更改其内容。例如C语言中使用定义的全局变量，且定义时赋予“ 0 值”给该变量进行初始化(若定义该变量时没有赋予初始值，编译器会把它当ZI-data来对待，初始化为 0)；</p></li></ul><p>再补充一个</p><ul><li>ZI-data 的栈空间(Stack)及堆空间(Heap)：在C语言中，函数内部定义的局部变量属于栈空间，进入函数的时候会向栈空间申请内存给局部变量，退出时释放局部变量，归还内存空间。而使用malloc动态分配的变量属于堆空间。在程序中的栈空间和堆空间都是属于ZI-data区域的，这些空间都会被初始值化为0值。编译器给出的ZI-data占用的空间值中包含了堆栈的大小(经实际测试，若程序中完全没有使用malloc动态申请堆空间，编译器会优化，不把堆空间计算在内)。</li></ul><p>上述四种类型的数据占用内存情况如下：</p><ol><li><p>在程序烧录完成之后如左图所示。Code + RO_data + RW_data（RO + RW）三种类型需要占用 Flash 空间。RAM不需要用到。</p></li><li><p>在程序运行时的情况如右图所示。Flash 的空间未发生变化；对于RAM的空间，程序启动时首先需要把 Flash 中的 RW_data（RW）复制到 RAM 中，然后把 ZI_data 加载到 RAM中。<br><img src="/.com//12"><br>对应到具体的内存上，结合启动流程如下图所示。</p></li></ol><p><img src="/.com//13"></p><p>结论，想要让一个程序正常运行。</p><p>芯片的 Flash 大小 要大于 Code + RO-data + RW-data 的大小；</p><p>芯片的 RAM 大小 要大于 RW-data + ZI_data 的大小。</p><h2 id="4-text、data、bss"><a href="#4-text、data、bss" class="headerlink" title="4. text、data、bss"></a>4. text、data、bss</h2><p>上面分析了程序占用的 ROM 和 RAM 大小。然后分析一下数据或变量的存储位置。<br><img src="/.com//14"></p><p>程序编译后的内容包括：代码段（text）、数据段(data)、bss段、堆栈段（head stack） 。<br>其中：</p><ul><li><p>text 段：存放代码程序的可执行指令</p></li><li><p>data 段：存放已被初始化的 全局变量 和 常量</p></li><li><p>bss 段：存放未被初始化的 全局变量</p></li></ul><p><a href="https://blog.csdn.net/weixin_46253745/article/details/130032941">文章来源</a></p>]]></content:encoded>
-      
-      
-      
-      
-      <comments>http://example.com/2024/03/26/STM32%E5%86%85%E5%AD%98%E7%AE%80%E8%BF%B0/STM32%E5%86%85%E5%AD%98%E7%AE%80%E8%BF%B0%EF%BC%88Flash%E5%92%8CSRAM%EF%BC%89/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
       <title>服务器最大支持的TCP连接数</title>
       <link>http://example.com/2024/02/01/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9C%80%E5%A4%A7%E6%94%AF%E6%8C%81%E7%9A%84TCP%E8%BF%9E%E6%8E%A5%E6%95%B0/</link>
       <guid>http://example.com/2024/02/01/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9C%80%E5%A4%A7%E6%94%AF%E6%8C%81%E7%9A%84TCP%E8%BF%9E%E6%8E%A5%E6%95%B0/</guid>
@@ -221,6 +199,27 @@
       
       
       <comments>http://example.com/2023/10/12/AIX%E5%91%BD%E4%BB%A4%E7%9B%B8%E5%85%B3%E6%9D%82%E8%AE%B0/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>ESP32学习笔记</title>
+      <link>http://example.com/2023/10/07/ESP32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <guid>http://example.com/2023/10/07/ESP32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <pubDate>Sat, 07 Oct 2023 09:46:33 GMT</pubDate>
+      
+      <description>&lt;h1 id=&quot;1-环境搭建&quot;&gt;&lt;a href=&quot;#1-环境搭建&quot; class=&quot;headerlink&quot; title=&quot;1. 环境搭建&quot;&gt;&lt;/a&gt;1. 环境搭建&lt;/h1&gt;&lt;p&gt;平台：MacBook Pro&lt;br&gt;软件：vscode + ESP-IDF&lt;br&gt;硬件：ESP32 WROOM-32、macbook 拓展坞、USB数据线（连接esp32和笔记本）    &lt;/p&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<h1 id="1-环境搭建"><a href="#1-环境搭建" class="headerlink" title="1. 环境搭建"></a>1. 环境搭建</h1><p>平台：MacBook Pro<br>软件：vscode + ESP-IDF<br>硬件：ESP32 WROOM-32、macbook 拓展坞、USB数据线（连接esp32和笔记本）    </p><span id="more"></span><h2 id="1-1-下载安装vscode软件"><a href="#1-1-下载安装vscode软件" class="headerlink" title="1.1 下载安装vscode软件"></a>1.1 下载安装vscode软件</h2><p><a href="https://code.visualstudio.com/sha/download?build=stable&os=cli-darwin-arm64">Mac版本的vscode</a></p><p>下载安装的过程省略，因为我会，所以默认都会了。<br>下载完成之后，记得安装中文插件，当然英语好的老6可以忽略。<br><img src="/.com//image-12.png" alt="image12"></p><p>安装完中文插件重启之后，就会显示中文字体。</p><h2 id="1-2-安装esp-idf-插件"><a href="#1-2-安装esp-idf-插件" class="headerlink" title="1.2 安装esp-idf 插件"></a>1.2 安装esp-idf 插件</h2><p>重新打开vscode，然后在扩展中搜索espress,见下图：<br><img src="/.com//image-13.png" alt="Alt text"></p><p>安装完成后,在左侧点击刚安装好的扩展程序（乐鑫的图标），初始界面如下图<br><img src="/.com//esp1.png" alt="Alt text"></p><p>选择<code>EXPRESS</code>,然后按照下图选择并安装esp-idf的安装包，选择好之后，点击左下角的<code>install</code><br><img src="/.com//esp13.png" alt="esp"></p><p>安装中。。。视网络环境看，大概需要20分钟左右下载安装完毕；<br><img src="/.com//esp14.png" alt="esp2"></p><p>等出现下图中的日志时，说明安装成功。<br><img src="/.com//esp15.png" alt="esp3"></p><p>到此，<strong>环境搭建好了～撒欢儿～哏儿～</strong></p><h1 id="2-第一次例程下载"><a href="#2-第一次例程下载" class="headerlink" title="2. 第一次例程下载"></a>2. 第一次例程下载</h1><h2 id="2-1-hello-world-横空出世"><a href="#2-1-hello-world-横空出世" class="headerlink" title="2.1 hello_world 横空出世"></a>2.1 hello_world 横空出世</h2><p>作为程序猿（媛），学习新知识的一个案例必须是<code>hello world</code>.</p><p>先点击左右乐鑫的图标，然后点击F1，出来一个搜索框，然后输入<code>idf:show</code> ,看下图：<br><img src="/.com//image-15.png" alt="Alt text"></p><p>如果出现了下面选择路径的情况的话，直接选择自己安装的路径即可。<br><img src="/.com//image-16.png" alt="Alt text"></p><p>111111111111111<br><img src="/.com//eps20.png" alt="esp20"></p><p>选择保存的路径：<br><img src="/.com//esp21.png"><br>即可看到下图所示的工程，箭头所指即为主程序，<br><img src="/.com//esp231.png"><br><strong>重点！！！重点！！！这张图一定要记住</strong><br><img src="/.com//eps24.png"><br>按照上图的配置，我这里修改的地方如下：</p><ul><li>串口选择的是<code>/dev/cu.usbserial-0001</code></li><li>芯片类型选择的 <code>esp32</code></li><li>flash method 选择的是 <code>UART</code><br>配置好之后，点击编译，如下图所示：<br><img src="/.com//eps25.png"></li></ul><p>点击⚡️按钮将程序下载到开发板里面去，下图为下载完成之后的亚子～<br><img src="/.com//esp26.png"></p><p>如上图下载完成之后，电机那个小电视图标，就可以看到开发板打印的东西了。<br><strong>完美～～～    perfect ！！！</strong><br><img src="/.com//esp27.png"></p>]]></content:encoded>
+      
+      
+      
+      <category domain="http://example.com/tags/ESP32-MACOS/">ESP32 MACOS</category>
+      
+      
+      <comments>http://example.com/2023/10/07/ESP32%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#disqus_thread</comments>
       
     </item>
     
